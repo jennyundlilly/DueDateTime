@@ -1,15 +1,20 @@
 package model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class TerminModel {
 	private String title;
-	private int message;
-	private Date date;
-	private long restZeit;
+	private String message;
+	private Calendar calendar;
+	private long restZeit; // Sekunde
+	private long interval;
 
-	public TerminModel() {
-		// TODO Auto-generated constructor stub
+	public TerminModel(String title, String message, Calendar calendar) {
+		setTitle(title);
+		setMessage(message);
+		setCalendar(calendar);
+		setRestZeit();
+		setInterval();
 	}
 
 	public String getTitle() {
@@ -20,28 +25,36 @@ public class TerminModel {
 		this.title = title;
 	}
 
-	public int getMessage() {
+	public String getMessage() {
 		return message;
 	}
 
-	public void setMessage(int message) {
+	public void setMessage(String message) {
 		this.message = message;
 	}
 
-	public Date getDate() {
-		return date;
+	public Calendar getCalendar() {
+		return calendar;
 	}
 
-	public void setDate(Date date) {
-		this.date = date;
+	public void setCalendar(Calendar calendar) {
+		this.calendar = calendar;
 	}
 
 	public long getRestZeit() {
 		return restZeit;
 	}
 
-	public void setRestZeit(long restZeit) {
-		this.restZeit = restZeit;
+	public void setRestZeit() {
+
+		this.restZeit = (getCalendar().getTimeInMillis() - Calendar.getInstance().getTimeInMillis()) / 1000;
 	}
 
+	public long getInterval() {
+		return interval;
+	}
+
+	public void setInterval() {
+		this.interval = getRestZeit() < 3600 ? 3000 : 15000;
+	}
 }
