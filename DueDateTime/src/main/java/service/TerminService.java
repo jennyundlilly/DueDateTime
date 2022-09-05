@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
+import java.util.Random;
 
 import controller.DueDateTimeController;
 import dao.TerminDao;
@@ -68,9 +69,10 @@ public class TerminService extends TerminDao {
 	}
 
 	public void addTermin() {
+		Random random = new Random();
 		Calendar c1 = Calendar.getInstance(new Locale("DE_de"));
-		c1.add(Calendar.HOUR, 2);
-		c1.add(Calendar.SECOND, 1);
+		c1.add(Calendar.HOUR, random.nextInt(2));
+		c1.add(Calendar.MINUTE, random.nextInt(50) + 5);
 		TerminModel terminModel = new TerminModel("Neue Termin", "Neu Message", c1);
 		getList().add(terminModel);
 //		getDdt().getViewBuilder().getList().add(terminModel);

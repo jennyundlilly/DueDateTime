@@ -1,6 +1,8 @@
 package view.panel;
 
 import java.awt.BorderLayout;
+import java.awt.ComponentOrientation;
+import java.awt.FlowLayout;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -21,7 +23,8 @@ public class MainPanel extends JPanel {
 		setContentPanel();
 
 		setSize(1200, 800);
-		setLayout(new BorderLayout(0, 0));
+		setLayout(new BorderLayout());
+		setComponentOrientation(ComponentOrientation.LEFT_TO_RIGHT);
 
 		add(getHeaderPanel(), BorderLayout.NORTH);
 

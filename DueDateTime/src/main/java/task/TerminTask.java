@@ -7,15 +7,16 @@ import javax.swing.JLabel;
 
 import model.TerminModel;
 import utils.LongUtil;
+import view.panel.TerminPanel;
 
 public class TerminTask extends TimerTask {
 
 	private TerminModel terminModel;
-	private JLabel restZeit;
+	private TerminPanel terminPanel;
 
-	public TerminTask(TerminModel terminModel, JLabel restZeit) {
+	public TerminTask(TerminModel terminModel, TerminPanel terminPanel) {
 		setModel(terminModel);
-		setRestZeit(restZeit);
+		setTerminPanel(terminPanel);
 	}
 
 	private TerminModel getModel() {
@@ -26,24 +27,24 @@ public class TerminTask extends TimerTask {
 		this.terminModel = terminModel;
 	}
 
-	public JLabel getRestZeit() {
-		return restZeit;
-	}
-
-	public void setRestZeit(JLabel restZeit) {
-		this.restZeit = restZeit;
-	}
-
 	@Override
 	public void run() {
 		getModel().setInterval();
 		getModel().setRestZeit();
 		if (terminModel.getRestZeit() >= 3600) {
-			getRestZeit().setForeground(Color.BLUE);
+			getTerminPanel().getRestZeitLabel().setForeground(Color.BLUE);
 
 		} else {
-			getRestZeit().setForeground(Color.RED);
+			getTerminPanel().getRestZeitLabel().setForeground(Color.RED);
 		}
-		getRestZeit().setText(LongUtil.secountToString(terminModel.getRestZeit()));
+		getTerminPanel().getRestZeitLabel().setText(LongUtil.secountToString(terminModel.getRestZeit()));
+	}
+
+	public TerminPanel getTerminPanel() {
+		return terminPanel;
+	}
+
+	public void setTerminPanel(TerminPanel terminPanel) {
+		this.terminPanel = terminPanel;
 	}
 }

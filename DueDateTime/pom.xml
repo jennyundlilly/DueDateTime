@@ -12,6 +12,10 @@
 		    <artifactId>jdatepicker</artifactId>
 		    <version>1.3.2</version>
 		</dependency>
-
+<dependency>
+    <groupId>io.github.parubok</groupId>
+    <artifactId>multiline-label</artifactId>
+    <version>1.18</version>
+</dependency>
   </dependencies>
 </project>

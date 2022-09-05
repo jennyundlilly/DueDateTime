@@ -55,6 +55,6 @@ public class TerminModel {
 	}
 
 	public void setInterval() {
-		this.interval = getRestZeit() < 3600 ? 3000 : 15000;
+		this.interval = getRestZeit() < 3600 ? 2000 : 6000;
 	}
 }

@@ -4,6 +4,7 @@ import java.awt.Dimension;
 
 import javax.swing.BoxLayout;
 import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
 
 import controller.DueDateTimeController;
 
@@ -14,6 +15,7 @@ public class ContentPanel extends JPanel {
 	public ContentPanel(DueDateTimeController ddt) {
 		setDdt(ddt);
 		setMinimumSize(new Dimension(1200, 800));
+		setBorder(new EmptyBorder(10, 15, 10, 15));
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 	}
 
