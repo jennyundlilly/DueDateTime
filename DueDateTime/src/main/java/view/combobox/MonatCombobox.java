@@ -39,7 +39,7 @@ public class MonatCombobox extends JComboBox<String> {
 
 				getNtd().getErstellenCalendar().set(Calendar.MONTH, getSelectedIndex());
 
-				System.out.println(getNtd().getErstellenCalendar().get(Calendar.MONTH));
+				// System.out.println(getNtd().getErstellenCalendar().get(Calendar.MONTH));
 			}
 		});
 

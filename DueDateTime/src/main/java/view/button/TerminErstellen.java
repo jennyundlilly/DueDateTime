@@ -22,8 +22,8 @@ public class TerminErstellen extends JButton {
 		addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
+				getNtd().getDdt().getTerminService().addTermin(getNtd());
 				getNtd().dispose();
-				getNtd().getDdt().getTerminService().addTermin();
 			}
 		});
 	}

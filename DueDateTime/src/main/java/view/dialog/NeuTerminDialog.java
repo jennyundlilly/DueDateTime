@@ -5,7 +5,6 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.util.Calendar;
 
-import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -14,21 +13,27 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import controller.DueDateTimeController;
+import view.button.AbbrechenButton;
 import view.button.TerminErstellen;
 import view.combobox.JahrCombobox;
 import view.combobox.MinuteCombobox;
 import view.combobox.MonatCombobox;
 import view.combobox.StundeComboBox;
 import view.combobox.TagCombobox;
+import view.panel.LeerPanel;
 
 public class NeuTerminDialog extends JDialog {
 
 	private static final long serialVersionUID = 1L;
-	private JTextField titelEdt;
 	private DueDateTimeController ddt;
 	private Calendar erstellenCalendar;
+
+	private JTextField titelField;
+	private JTextArea beschreibungArea;
+	private MinuteCombobox minuteCombobox;
+	private StundeComboBox stundeCombobox;
 	private TagCombobox tagCombobox;
-	private MonatCombobox monatCbb;
+	private MonatCombobox monatCombobox;
 	private JahrCombobox jahrCombobox;
 
 	public NeuTerminDialog(DueDateTimeController ddt) {
@@ -45,64 +50,100 @@ public class NeuTerminDialog extends JDialog {
 		this.ddt = ddt;
 	}
 
-	private TagCombobox getTagCombobox() {
+	public Calendar getErstellenCalendar() {
+		return erstellenCalendar;
+	}
+
+	public void setErstellenCalendar(Calendar erstellenCalendar) {
+		this.erstellenCalendar = erstellenCalendar;
+	}
+
+	public MinuteCombobox getMinuteCombobox() {
+		return minuteCombobox;
+	}
+
+	public void setMinuteCombobox(MinuteCombobox minuteCombobox) {
+		this.minuteCombobox = minuteCombobox;
+	}
+
+	public StundeComboBox getStundeCombobox() {
+		return stundeCombobox;
+	}
+
+	public void setStundeCombobox(StundeComboBox stundeCombobox) {
+		this.stundeCombobox = stundeCombobox;
+	}
+
+	public TagCombobox getTagCombobox() {
 		return tagCombobox;
 	}
 
-	private void setTagCombobox(TagCombobox tagCombobox) {
+	public void setTagCombobox(TagCombobox tagCombobox) {
 		this.tagCombobox = tagCombobox;
 	}
 
-	private MonatCombobox getMonatCbb() {
-		return monatCbb;
+	public MonatCombobox getMonatCombobox() {
+		return monatCombobox;
 	}
 
-	private void setMonatCbb(MonatCombobox monatCbb) {
-		this.monatCbb = monatCbb;
+	public void setMonatCombobox(MonatCombobox monatCombobox) {
+		this.monatCombobox = monatCombobox;
 	}
 
-	private JahrCombobox getJahrCombobox() {
+	public JahrCombobox getJahrCombobox() {
 		return jahrCombobox;
 	}
 
-	private void setJahrCombobox(JahrCombobox jahrCombobox) {
+	public void setJahrCombobox(JahrCombobox jahrCombobox) {
 		this.jahrCombobox = jahrCombobox;
+	}
+
+	public JTextField getTitelField() {
+		return titelField;
+	}
+
+	public void setTitelField(JTextField titelField) {
+		this.titelField = titelField;
+	}
+
+	public JTextArea getBeschreibungArea() {
+		return beschreibungArea;
+	}
+
+	public void setBeschreibungArea(JTextArea beschreibungArea) {
+		this.beschreibungArea = beschreibungArea;
 	}
 
 	private void init() {
 		Font fontBold = new Font("Lucida Grande", Font.BOLD, 18);
 
-		setSize(740, 750);
+		setSize(740, 550);
 		setTitle("Neuen Termin eintragen");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setModal(true);
 		setLayout(new FlowLayout(FlowLayout.LEFT, 20, 0));
 
-		JPanel l1 = new JPanel();
-		l1.setPreferredSize(new Dimension(700, 30));
-		add(l1);
+		add(new LeerPanel(700, 30));
 
 		JLabel titelLbl = new JLabel("Titel");
 		titelLbl.setPreferredSize(new Dimension(700, 30));
 		titelLbl.setFont(fontBold);
 		add(titelLbl);
 
-		titelEdt = new JTextField();
-		titelEdt.setPreferredSize(new Dimension(700, 30));
-		titelEdt.setFont(fontBold);
-		add(titelEdt);
+		setTitelField(new JTextField());
+		getTitelField().setPreferredSize(new Dimension(700, 30));
+		getTitelField().setFont(fontBold);
+		add(getTitelField());
 
-		JPanel l11 = new JPanel();
-		l11.setPreferredSize(new Dimension(700, 30));
-		add(l11);
+		add(new LeerPanel(700, 30));
 
 		JLabel beschreibungLbl = new JLabel("Beschreibung");
 		beschreibungLbl.setPreferredSize(new Dimension(700, 30));
 		beschreibungLbl.setFont(fontBold);
 		add(beschreibungLbl);
 
-		JTextArea beschreibungArea = new JTextArea();
-		beschreibungArea.setFont(fontBold);
+		setBeschreibungArea(new JTextArea());
+		getBeschreibungArea().setFont(fontBold);
 
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setPreferredSize(new Dimension(700, 80));
@@ -110,37 +151,32 @@ public class NeuTerminDialog extends JDialog {
 		add(scrollPane);
 
 		JPanel leftJPanel = new JPanel();
-		leftJPanel.setPreferredSize(new Dimension(350, 300));
+		leftJPanel.setPreferredSize(new Dimension(350, 200));
 
 		FlowLayout leftJPanelLayout = new FlowLayout(FlowLayout.LEFT, 0, 0);
 		leftJPanel.setLayout(leftJPanelLayout);
 
-		JPanel l2 = new JPanel();
-		l2.setPreferredSize(new Dimension(330, 10));
-		leftJPanel.add(l2);
+		leftJPanel.add(new LeerPanel(330, 10));
 
 		JLabel tagLbl = new JLabel("Tag");
 		tagLbl.setFont(fontBold);
 		tagLbl.setPreferredSize(new Dimension(100, 30));
 		leftJPanel.add(tagLbl);
 
-		TagCombobox tagCbb = new TagCombobox(this);
-		leftJPanel.add(tagCbb);
+		setTagCombobox(new TagCombobox(this));
+		leftJPanel.add(getTagCombobox());
 
-		JPanel l3 = new JPanel();
-		l3.setPreferredSize(new Dimension(330, 10));
-		leftJPanel.add(l3);
+		leftJPanel.add(new LeerPanel(330, 10));
 
 		JLabel monatLbl = new JLabel("Monat");
 		monatLbl.setPreferredSize(new Dimension(100, 30));
 		monatLbl.setFont(fontBold);
 		leftJPanel.add(monatLbl);
-		setMonatCbb(new MonatCombobox(this));
-		leftJPanel.add(getMonatCbb());
 
-		JPanel l4 = new JPanel();
-		l4.setPreferredSize(new Dimension(330, 10));
-		leftJPanel.add(l4);
+		setMonatCombobox(new MonatCombobox(this));
+		leftJPanel.add(getMonatCombobox());
+
+		leftJPanel.add(new LeerPanel(330, 10));
 
 		JLabel jahrLbl = new JLabel("Jahr");
 		jahrLbl.setPreferredSize(new Dimension(100, 30));
@@ -148,55 +184,46 @@ public class NeuTerminDialog extends JDialog {
 		leftJPanel.add(jahrLbl);
 
 		setJahrCombobox(new JahrCombobox(this));
-
 		leftJPanel.add(getJahrCombobox());
 
 		add(leftJPanel);
 
 		JPanel rightJPanel = new JPanel();
-		rightJPanel.setPreferredSize(new Dimension(350, 300));
-
+		rightJPanel.setPreferredSize(new Dimension(350, 200));
 		FlowLayout rightJPanelLayout = new FlowLayout(FlowLayout.LEFT, 0, 0);
 		rightJPanel.setLayout(rightJPanelLayout);
 
-		JPanel l5 = new JPanel();
-		l5.setPreferredSize(new Dimension(330, 10));
-		rightJPanel.add(l5);
+		rightJPanel.add(new LeerPanel(330, 10));
 
 		JLabel stundeLbl = new JLabel("Stunde");
 		stundeLbl.setPreferredSize(new Dimension(100, 30));
 		rightJPanel.add(stundeLbl);
 
-		rightJPanel.add(new StundeComboBox());
+		setStundeCombobox(new StundeComboBox(this));
+		rightJPanel.add(getStundeCombobox());
 
 		JLabel minuteLbl = new JLabel("Minute");
 		minuteLbl.setPreferredSize(new Dimension(100, 30));
 		rightJPanel.add(minuteLbl);
 
-		rightJPanel.add(new MinuteCombobox());
+		setMinuteCombobox(new MinuteCombobox());
+		rightJPanel.add(getMinuteCombobox());
 
 		add(rightJPanel);
 
 		JPanel bottomJPanel = new JPanel();
-		bottomJPanel.setPreferredSize(new Dimension(350, 300));
+		bottomJPanel.setPreferredSize(new Dimension(700, 100));
 		bottomJPanel.setLayout(new FlowLayout(FlowLayout.RIGHT, 20, 0));
 		TerminErstellen erstellenBtn = new TerminErstellen(this);
 
 		bottomJPanel.add(erstellenBtn);
+		bottomJPanel.add(new AbbrechenButton(this));
 		add(bottomJPanel);
 
 		setLocationRelativeTo(null);
 		setResizable(false);
 		setVisible(true);
 
-	}
-
-	public Calendar getErstellenCalendar() {
-		return erstellenCalendar;
-	}
-
-	public void setErstellenCalendar(Calendar erstellenCalendar) {
-		this.erstellenCalendar = erstellenCalendar;
 	}
 
 }

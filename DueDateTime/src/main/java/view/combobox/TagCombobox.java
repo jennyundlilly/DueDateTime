@@ -36,7 +36,7 @@ public class TagCombobox extends JComboBox<String> {
 			}
 		}
 
-		setSelectedIndex(c.get(Calendar.DAY_OF_MONTH));
+		setSelectedIndex(c.get(Calendar.DAY_OF_MONTH) - 1);
 		setFont(new Font("Lucida Grande", Font.BOLD, 18));
 	}
 

@@ -27,7 +27,7 @@ public class JahrCombobox extends JComboBox<String> {
 		addActionListener(new ActionListener() {
 
 			public void actionPerformed(ActionEvent e) {
-				System.out.println(getSelectedIndex());
+//				System.out.println(getSelectedIndex());
 
 			}
 		});

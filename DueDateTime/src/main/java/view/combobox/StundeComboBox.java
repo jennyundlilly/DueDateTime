@@ -6,10 +6,14 @@ import java.util.Calendar;
 
 import javax.swing.JComboBox;
 
+import view.dialog.NeuTerminDialog;
+
 public class StundeComboBox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;
+	private NeuTerminDialog ntd;
 
-	public StundeComboBox() {
+	public StundeComboBox(NeuTerminDialog ntd) {
+		setNtd(ntd);
 		Calendar c = Calendar.getInstance();
 
 		setPreferredSize(new Dimension(200, 50));
@@ -24,4 +28,11 @@ public class StundeComboBox extends JComboBox<String> {
 		setFont(new Font("Lucida Grande", Font.BOLD, 18));
 	}
 
+	public NeuTerminDialog getNtd() {
+		return ntd;
+	}
+
+	public void setNtd(NeuTerminDialog ntd) {
+		this.ntd = ntd;
+	}
 }

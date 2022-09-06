@@ -1,6 +1,5 @@
 package view.panel;
 
-import java.awt.Button;
 import java.awt.Color;
 import java.awt.ComponentOrientation;
 import java.awt.Dimension;
@@ -10,7 +9,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
-import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -114,6 +112,8 @@ public class TerminPanel extends JPanel {
 
 			public void actionPerformed(ActionEvent e) {
 				deleteBtn.setForeground(Color.RED);
+				System.out.println(terminModel.getTitle());
+				System.out.println(terminModel.getMessage());
 
 			}
 		});

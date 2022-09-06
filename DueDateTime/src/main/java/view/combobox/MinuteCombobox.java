@@ -6,12 +6,14 @@ import java.util.Calendar;
 
 import javax.swing.JComboBox;
 
-public class MinuteCombobox extends JComboBox<String> {
+import view.dialog.NeuTerminDialog;
 
+public class MinuteCombobox extends JComboBox<String> {
 	private static final long serialVersionUID = 1L;
+	private NeuTerminDialog ntd;
 
 	public MinuteCombobox() {
-
+		setNtd(ntd);
 		Calendar c = Calendar.getInstance();
 
 		setPreferredSize(new Dimension(200, 50));
@@ -25,6 +27,9 @@ public class MinuteCombobox extends JComboBox<String> {
 		int index = 0;
 		try {
 			index = (c.get(Calendar.MINUTE) / 5) + 1;
+			if (index == 12) {
+				index = 0;
+			}
 		} catch (Exception e) {
 			index = 0;
 		}
@@ -33,4 +38,11 @@ public class MinuteCombobox extends JComboBox<String> {
 		setFont(new Font("Lucida Grande", Font.BOLD, 18));
 	}
 
+	public NeuTerminDialog getNtd() {
+		return ntd;
+	}
+
+	public void setNtd(NeuTerminDialog ntd) {
+		this.ntd = ntd;
+	}
 }

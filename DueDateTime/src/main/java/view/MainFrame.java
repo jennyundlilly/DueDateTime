@@ -1,7 +1,9 @@
 package view;
 
 import javax.swing.JFrame;
+import javax.swing.ListModel;
 
+import model.TerminModel;
 import view.panel.MainPanel;
 
 public class MainFrame extends JFrame {

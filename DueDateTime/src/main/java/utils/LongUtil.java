@@ -2,8 +2,21 @@ package utils;
 
 public class LongUtil {
 	/**
-	 * 1sec = 1; 1min = sec * 60 = 60; 1std = min * 60 = 3600; 1tag = std * 24 =
-	 * 86400
+	 * <b>Secount to String</b>
+	 * 
+	 * @params sekunden :long
+	 * 
+	 * @return String
+	 *         <p>
+	 *         Beispiel 2 Tage 6 Stunden 12 Minuten 25 Sekunden
+	 *         <p>
+	 *         1sec = 1;
+	 *         <p>
+	 *         1min = sec * 60 = 60;
+	 *         <p>
+	 *         1std = min * 60 = 3600;
+	 *         <p>
+	 *         1tag = std * 24 = 86400
 	 */
 	public static String secountToString(long sekunden) {
 		String tag = "", stunde = "", minute = "", sekunde = "";

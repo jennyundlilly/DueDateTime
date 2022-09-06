@@ -57,4 +57,32 @@ public class TerminModel {
 	public void setInterval() {
 		this.interval = getRestZeit() < 3600 ? 2000 : 6000;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		TerminModel other = (TerminModel) obj;
+		if (calendar == null) {
+			if (other.calendar != null)
+				return false;
+		} else if (!calendar.equals(other.calendar))
+			return false;
+		if (message == null) {
+			if (other.message != null)
+				return false;
+		} else if (!message.equals(other.message))
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
+			return false;
+		return true;
+	}
+
 }
